@@ -1,0 +1,49 @@
+const mongoose = require("mongoose")
+const Achievements = require("../models/Achievements")
+
+
+const userSchema = new mongoose.Schema(
+    {
+        name: {
+            type: String,
+            required: true
+        },
+        identity_number: {
+            type: String,
+            required: true,
+            unique: true
+        },
+        password: {
+            type: String,
+            required: true,
+            unique: true
+        },
+        phone: {
+            type: String,
+            required: true,
+
+        },
+        address: {
+            type: String,
+            required: true
+        },
+        email: {
+            type: String
+        },
+        date_of_birth: {
+            type: Date
+        },
+        status: {
+            type: String,
+            enum: ['תלמיד', 'איש צוות', 'מנהל'],
+            required: true
+        }
+
+    },
+    {
+        timestamps: true
+    }
+)
+
+module.exports = mongoose.model('Users', userSchema)
+

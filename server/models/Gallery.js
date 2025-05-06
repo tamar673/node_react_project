@@ -1,4 +1,5 @@
 const mongoose=require('mongoose')
+
 const galleryschma=new mongoose.Schema({
     filename:{
         type: String

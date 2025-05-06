@@ -4,7 +4,7 @@ const upload = multer({ storage: storage });
 const Gallery=require('../models/Gallery')
 
 
-const getallgallery=('/',async(req,res)=>{
+const getAllGallery=('/',async(req,res)=>{
     const gallery=await Gallery.find()
     res.json(gallery.map(g => ({
         id: g._id,
@@ -17,7 +17,7 @@ const getallgallery=('/',async(req,res)=>{
 
 })
 
-const getspcgallery=('/',async(req,res)=>{
+const getSpcGallery=('/',async(req,res)=>{
     const type=req.params
     const gallery = await Gallery.find({ status: type })
     if(!gallery)
@@ -32,7 +32,7 @@ const getspcgallery=('/',async(req,res)=>{
       })));
 })
 
-const createnew=('/',async(req,res)=>{
+const createNew=('/',async(req,res)=>{
     try {
         const { title, status,public, uploade_by,} = req.body;
         const img = req.file;
@@ -52,7 +52,8 @@ const createnew=('/',async(req,res)=>{
         res.status(500).json({ error: err.message });
       }
     })
-const changestatus=('/',async(req,res)=>{
+    
+const changeStatus=('/',async(req,res)=>{
     const{_id,status}=req.body
     if(!_id){
         return res.status(400).json({message:'cant search without _id'})}
@@ -65,7 +66,7 @@ const changestatus=('/',async(req,res)=>{
     res.json(saver)
 })
 
-const changepublic=('/',async(req,res)=>{
+const changePublic=('/',async(req,res)=>{
     const {_id,public}=req.body
     if(!_id){
         return res.status(400).json({message:'cant search without _id'})}
@@ -78,7 +79,7 @@ const changepublic=('/',async(req,res)=>{
     res.json(saver)
 })
 
-const deletefromgallry=('/',async(req,res)=>{
+const deleteFromGallry=('/',async(req,res)=>{
     const{_id}=req.body
     if(!_id){
         return res.status(400).json({message:'cant search without _id'})}
@@ -90,4 +91,4 @@ const deletefromgallry=('/',async(req,res)=>{
     res.json(saver)
 }) 
 
-module.exports={upload,getallgallery,getspcgallery,createnew,changestatus,changepublic,deletefromgallry}
+module.exports={upload,getAllGallery,getSpcGallery,createNew,changeStatus,changePublic,deleteFromGallry}

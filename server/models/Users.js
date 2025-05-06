@@ -1,7 +1,4 @@
 const mongoose = require("mongoose")
-const Achievements = require("../models/Achievements")
-
-
 const userSchema = new mongoose.Schema(
     {
         name: {

@@ -1,7 +1,5 @@
 const Users = require("../models/Users")
 
-
-
 const getAllStudents = ('/', async (req, res) => {
     try {
         const students = await Users.find({ status: 'תלמיד' })

@@ -21,7 +21,7 @@ const getAllStaff = ('/', async (req, res) => {
 })
 
 const getUserById = ('/', async (req, res) => {
-    const { id } = req.params
+    const { id } = req.params  
     const user = await Users.findById(id).lean()
     if (!user) {
         return res.status(404).json({ message: 'No user found' })
@@ -35,6 +35,9 @@ const creatUser = ('/', async (req, res) => {
     const achievements = []
     if (!name || !identity_number || !password || !phone || !address || !status)
         return res.status(400).json({ message: 'Missing data' })
+    const duplicate=await Users.findOne({identity_number}).lean()
+    if(duplicate)
+        return res.status(409).json({ message: 'duplicate identity_number' })
     const user = await Users.create({ name, identity_number, password, phone, address, email, date_of_birth, status })
     if (!user)
         return res.status(404).json({ message: 'did not creat new user' })

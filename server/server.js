@@ -17,6 +17,8 @@ app.use('/api/user',require('./routers/Users'))
 app.use('/api/achievement',require('./routers/Achievements'))
 app.use('/api/gallery',require('./routers/Gallery'))
 
+app.use("/api/auth", require("./routers/Auth"))
+
 mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB')
     app.listen(PORT, () => console.log(`Server running on port

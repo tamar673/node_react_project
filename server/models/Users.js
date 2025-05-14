@@ -12,13 +12,11 @@ const userSchema = new mongoose.Schema(
         },
         password: {
             type: String,
-            required: true,
-            unique: true
+            required: true
         },
         phone: {
             type: String,
-            required: true,
-
+            required: true
         },
         address: {
             type: String,
@@ -34,6 +32,10 @@ const userSchema = new mongoose.Schema(
             type: String,
             enum: ['תלמיד', 'איש צוות', 'מנהל'],
             required: true
+        },
+        active: {
+            type:Boolean,
+            default:true
         }
 
     },

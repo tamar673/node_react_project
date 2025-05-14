@@ -5,12 +5,12 @@ const getAllAchievementsById = ('/', async (req, res) => {
     const { userId } = req.params
     if (!userId)
         return res.status(400).json({ message: 'enter userId' })
-    const allAchievements = await Achievements.find({userId: userId })
+    const allAchievements = await Achievements.find({userId: userId }).lean()
     res.json(allAchievements)
 })
 
 const createAchievement = ('/', async (req, res) => {
-    const { userId, achievement, date } = req.body//הid של התלמיד
+    const { userId, achievement, date } = req.body
     if (!userId || !achievement)
         return res.status(400).json({ message: 'enter data' })
     const achievement1 = await Achievements.create({ achievement, date })

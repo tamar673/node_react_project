@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
 import { IconButton, Box, Paper } from '@mui/material';
 import ViewColumnIcon from '@mui/icons-material/ViewColumn';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import ImageIcon from '@mui/icons-material/Image';
 
 const Home = () => {
-  const [visibleLogin, setVisibleLogin] = useState(false)
+  // const [visibleLogin, setVisibleLogin] = useState(false)
 
   return (
     <Box sx={{ p: 2 }}>
@@ -62,7 +61,7 @@ const Home = () => {
         >
           <ImageIcon fontSize="large" />
         </IconButton>
-        <button onClick={setVisibleLogin(true)}>login</button>
+        <button >login</button>
       </Paper>
     </Box>
   );

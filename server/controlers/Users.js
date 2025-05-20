@@ -2,8 +2,8 @@ const Users = require("../models/Users")
 
 const getByType = ('/', async (req, res) => {
      const {type}=req.params
-        const staff = await Users.find({ status: type });
-        res.json(staff);
+        const usersByType = await Users.find({ status: type });
+        res.json(usersByType);
     
         res.status(500).json({ message: 'An error occurred while retrieving staff data' });
     

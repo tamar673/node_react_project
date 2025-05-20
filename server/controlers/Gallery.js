@@ -1,59 +1,54 @@
 const multer = require('multer');
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null,'./public/Uploads')
+    },
+    filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+      cb(null, file.fieldname + '-' + uniqueSuffix)
+    }
+  })
+  
+const upload = multer({ storage: storage })
 const Gallery=require('../models/Gallery')
 
 
-const getAllGallery=('/',async(req,res)=>{
+
+const GetAllGallery=('/',async(req,res)=>{
     const gallery=await Gallery.find()
-    res.json(gallery.map(g => ({
-        id: g._id,
-        status: g.status,
-        public:g.public,
-        uploade_by:g.uploade_by,
-        imageType:g.imageType,
-        imageSrc: g.imageSrc
-      })));
+    res.json(gallery);
 
 })
 
-const getSpcGallery=('/',async(req,res)=>{
-    const type=req.params
+const GetsSpcGallery=('/',async(req,res)=>{
+    const {type}=req.params
     const gallery = await Gallery.find({ status: type })
-    if(!gallery)
-        res.status(404).json({message:"gallery not found"})
-    res.json(gallery.map(g => ({
-        id: g._id,
-        status: g.status,
-        public:g.public,
-        uploade_by:g.uploade_by,
-        imageType:g.imageType,
-        imageSrc: g.imageSrc
-      })));
+    res.json(gallery);
 })
 
-const createNew=('/',async(req,res)=>{
+const CreatNnew=('/',async(req,res)=>{
     try {
         const { title, status,public, uploade_by,} = req.body;
         const img = req.file;
     
         const newGallery = new Gallery({
+          filename: img.filename,
           title,
           status,
           public,
           uploade_by,
-          image: img.buffer, 
+          image: req.file.path, 
           imageType: img.mimetype 
         });
     
-        await newGallery.save();
-        res.status(201).json(newGallery,{ message: 'Image uploaded successfully!' });
+        const savedImage=await newGallery.save();
+        res.json(`${savedImage} image saved`);
       } catch (err) {
         res.status(500).json({ error: err.message });
       }
     })
-    
-const changeStatus=('/',async(req,res)=>{
+
+const ChangeStatus=('/',async(req,res)=>{
     const{_id,status}=req.body
     if(!_id){
         return res.status(400).json({message:'cant search without _id'})}
@@ -62,11 +57,11 @@ const changeStatus=('/',async(req,res)=>{
         res.status(400).json({message:"img not found..."})
     }
     img.status=status
-    const saver=img.save()
+    const saver=await img.save()
     res.json(saver)
 })
 
-const changePublic=('/',async(req,res)=>{
+const ChangePublic=('/',async(req,res)=>{
     const {_id,public}=req.body
     if(!_id){
         return res.status(400).json({message:'cant search without _id'})}
@@ -75,11 +70,11 @@ const changePublic=('/',async(req,res)=>{
         res.status(400).json({message:"img not found..."})
     }
     img.public=!public
-    const saver=img.save()
-    res.json(saver)
+    const saver=await img.save()
+    res.json(saver) 
 })
 
-const deleteFromGallry=('/',async(req,res)=>{
+const DeleteFromGallery=('/',async(req,res)=>{
     const{_id}=req.body
     if(!_id){
         return res.status(400).json({message:'cant search without _id'})}
@@ -91,4 +86,4 @@ const deleteFromGallry=('/',async(req,res)=>{
     res.json(saver)
 }) 
 
-module.exports={upload,getAllGallery,getSpcGallery,createNew,changeStatus,changePublic,deleteFromGallry}
+module.exports={upload,ChangeStatus,ChangePublic,DeleteFromGallery,CreatNnew,GetsSpcGallery,GetAllGallery}

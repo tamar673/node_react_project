@@ -1,11 +1,9 @@
 
-import Home from './routes/home.jsx'
-
 import { Route, Routes } from 'react-router-dom'
 import Gallery from './routes/gallery.jsx';
 import DaveningTimes from './routes/daveningTimes.jsx';
 import ReferenceSources from './routes/referenceSources.jsx';
-
+import Home from './routes/Home.jsx';
 export const baseURL = 'http://localhost:0011/api/';
 
 function App() {

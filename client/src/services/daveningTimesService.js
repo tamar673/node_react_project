@@ -50,3 +50,4 @@ export default {
   put: updateDaveningTime,
   delete: deleteDaveningTime,
 };
+   

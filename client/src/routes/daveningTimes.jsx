@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import {getDaveningTimes} from '../services/daveningTimesService';
+//import {getDaveningTimes} from '../services/daveningTimesService';
 
 const DaveningTimes = () => {
-  useEffect(()=>{
-    const daveningTimesList = getDaveningTimes();
-  },[])
+  // useEffect(()=>{
+  //   //const daveningTimesList = getDaveningTimes();
+  // },[])
   return (
     <div>
       <h1>DaveningTimes</h1>

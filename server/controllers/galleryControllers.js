@@ -13,7 +13,6 @@ const upload = multer({ storage: storage })
 const Gallery=require('../models/Gallery')
 
 
-
 const GetAllGallery=('/',async(req,res)=>{
     const gallery=await Gallery.find()
     res.json(gallery);
@@ -28,16 +27,16 @@ const GetsSpcGallery=('/',async(req,res)=>{
 
 const CreatNnew=('/',async(req,res)=>{
     try {
-        const { title, status,public, uploade_by,} = req.body;
+        const { title, status,isPublic, uploade_by,} = req.body;
         const img = req.file;
-    
+        const imagePath=`public/Uploudes/${img.filename}`
         const newGallery = new Gallery({
           filename: img.filename,
           title,
           status,
-          public,
+          isPublic,
           uploade_by,
-          image: req.file.path, 
+          image: imagePath,
           imageType: img.mimetype 
         });
     
@@ -62,14 +61,14 @@ const ChangeStatus=('/',async(req,res)=>{
 })
 
 const ChangePublic=('/',async(req,res)=>{
-    const {_id,public}=req.body
+    const {_id,isPublic}=req.body
     if(!_id){
         return res.status(400).json({message:'cant search without _id'})}
     const img=await Gallery.findById(_id).exec()
     if(!img){
         res.status(400).json({message:"img not found..."})
     }
-    img.public=!public
+    img.isPublicublic=!isPublic
     const saver=await img.save()
     res.json(saver) 
 })

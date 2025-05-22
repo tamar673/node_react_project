@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema(
         },
         status: {
             type: String,
-            enum: ['תלמיד', 'איש צוות', 'מנהל'],
+            enum: ['student', 'staff', 'manager'],
             required: true
         },
         active: {

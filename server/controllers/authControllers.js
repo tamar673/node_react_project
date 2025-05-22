@@ -14,7 +14,7 @@ const login = async (req, res) => {
         return res.status(401).json({message:'Unauthorized' })
         
     const userInfo= {_id: foundUser._id, identity_number: foundUser.identity_number, name: foundUser.name, status: foundUser.status }
-    const accessToken = jwt.sign(userInfo,process.env.ACCESS_TOKEN_SECRET)
+    const accessToken = jwt.sign({userInfo},process.env.ACCESS_TOKEN_SECRET)
     res.json({accessToken:accessToken,user:userInfo,role:foundUser.status})
  }
 

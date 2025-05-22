@@ -13,11 +13,11 @@ app.use(cors(corsOptions))
 app.use(express.json())
 app.use(express.static("public"))
 
-app.use('/api/user',require('./routers/Users'))
-app.use('/api/achievement',require('./routers/Achievements'))
-app.use('/api/gallery',require('./routers/Gallery'))
+app.use('/api/user',require('./routers/usersRouter'))
+app.use('/api/achievement',require('./routers/AchievementsRouter'))
+app.use('/api/gallery',require('./routers/GalleryRouter'))
 
-app.use("/api/auth", require("./routers/Auth"))
+app.use("/api/auth", require("./routers/AuthRouter"))
 
 mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB')

@@ -5,10 +5,10 @@ const galleryschma=new mongoose.Schema({
       } ,
     status: {
         type: String,
-        enum: ['trips', 'syumim', 'day_in_yeshiva','from_the_last_time','marhey_mekomot','zmaney_tfilot'], 
+        enum: ['trips', 'syumim', 'day_in_yeshiva','from_the_last_time','marhey_mekomot','zmaney_tfilot','whithRabanim'], 
         default: 'from_the_last_time'
       },
-      public:{
+      isPublic:{
         type:Boolean,
         default: false
       },

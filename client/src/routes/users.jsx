@@ -4,35 +4,37 @@ import { Column } from 'primereact/column';
 import React, { useEffect, useState } from 'react';
 import getUsersByType from '../services/usersService'
 
-const Users = () => {
+const Users = (type) => {
 
     const [users, setUsers] = useState([]);
 
     const getUsersData = (type) => {
         console.log("in function at component");
-        const userByType= getUsersByType(type);
-         setUsers(userByType);
+        const userByType = getUsersByType(type);
+        setUsers(userByType);
     }
-
-
 
     const usersTable = (users) => {
         return (
             <DataTable value={users} tableStyle={{ minWidth: '50rem' }}>
-                <Column field="status" header="Status"></Column>
-                <Column field="name" header="Name"></Column>
-               
+                <Column field="name" header="שם"></Column>
+                <Column field="identity_number" header="מספר זהות"></Column>
+                <Column field="password" header="סיסמא"></Column>
+                <Column field="phone" header="טלפון"></Column>
+                <Column field="address" header="כתובת"></Column>
+                <Column field="email" header="כתובת מייל"></Column>
+                <Column field="date_of_birth" header="תאריך לידה"></Column>
+                <Column field="activ" header="סטטוס"></Column>
+
+          <getUsersData/>
+
             </DataTable>
         )
     }
 
     return (
         <div>
-            <h1>Users</h1>
-            <Button title='תצוגת צוות' onClick={ ()=>getUsersData('איש צוות')} />
-            <Button title='תצוגת תלמידים' onClick={ ()=>getUsersData('תלמיד') } />
-            <usersTable users={users}/>
-            {/* {usersTable(users)} */}
+            <DataTable usersTable={users} />
         </div>
     );
 };

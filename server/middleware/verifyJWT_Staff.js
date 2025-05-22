@@ -12,7 +12,7 @@ const verifyJWT_Staff = (req, res, next) => {
             return res.status(403).json({ message: 'Forbidden' });
         }
    
-        if (decoded.status === 'תלמיד') {
+        if (decoded.status === 'student') {
             return res.status(401).json({ message: 'Forbidden' });
         }
 

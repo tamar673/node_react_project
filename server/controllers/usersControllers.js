@@ -68,15 +68,4 @@ const deleteUser = ('/', async (req, res) => {
     res.json(`'${user.name}' deleted`)
 })
 
-// const getUserAchievements = async (req, res) => {
-//     const { userId } = req.params
-
-//         const user = await Users.findById(userId).populate('achievements').lean()
-//         if (!user) {
-//             return res.status(404).json({ message: 'User not found' })
-//         }
-//         res.json(user.achievements)
-    
-// }
-
 module.exports = { getByType, getUserById, creatUser, updateUser, deleteUser }

@@ -1,6 +1,6 @@
 const express=require('express')
 const router=express.Router()
-const gallerycontroller=require('../controlers/Gallery')
+const gallerycontroller=require('../controllers/galleryControllers')
 const verifyJWT_Manager=require('../middleware/verifyJWT_Manager')
 const verifyJWT=require('../middleware/verifyJWT')
 

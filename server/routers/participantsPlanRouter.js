@@ -1,6 +1,6 @@
 const express=require("express")
 const router=express.Router()
-const ppcontroller=require("../controllers/Participants_plan")
+const ppcontroller=require("../controllers/participantsPlanControllers")
 const verifyJWT=require('../middleware/verifyJWT')
 const verifyJWT_Staff=require('../middleware/verifyJWT_Staff')
 

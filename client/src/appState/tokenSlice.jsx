@@ -6,7 +6,7 @@ role:""
 }
 const tokenSlice = createSlice({
     name: 'token',
-    initialState: i,
+    initialState: token,
     reducers: {
         setToken(state, action) {
             state.token = action.payload

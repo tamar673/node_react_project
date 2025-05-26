@@ -5,7 +5,7 @@ import DaveningTimes from './routes/daveningTimes.jsx';
 import ReferenceSources from './routes/referenceSources.jsx';
 import Home from './routes/Home.jsx';
 import Users from './routes/users.jsx';
-import Achievemens from './routes/achievemens.jsx'
+import Achievements from './routes/achievements.jsx'
 import Plans from './routes/plans.jsx'
 // export const baseURL = 'http://localhost:0011/api/';
 
@@ -19,7 +19,7 @@ function App() {
                 <Route path='/referenceSources' element={<ReferenceSources />} />
                 <Route path='/users' element={<Users />}/>
                 <Route path='/plans' element={<Plans />}/>
-                <Route path='/achievemens' element={<Achievemens />}/>
+                <Route path='/achievemens' element={<Achievements />}/>
             </Routes>
         </div>);
 }

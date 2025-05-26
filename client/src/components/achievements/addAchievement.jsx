@@ -3,7 +3,7 @@ import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { useSelector } from 'react-redux';
-import achievementsService from '../services/achievementsService'; // ודא נתיב נכון
+import achievementsService from '../../services/achievementsService'; // ודא נתיב נכון
 
 const AddAchievement = ({ userId, onAddSuccess, visible, onHide }) => {
     const { token } = useSelector((state) => state.token);

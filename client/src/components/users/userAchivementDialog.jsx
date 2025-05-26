@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
-import Achievement from '../../routes/achievemens.jsx';
+import Achievements from '../../routes/achievements.jsx'; // ודא נתיב נכון
 
 const UserAchievementDialog = ({ visible, onHide, userId }) => {
     
@@ -20,7 +20,7 @@ const UserAchievementDialog = ({ visible, onHide, userId }) => {
         >
             {/* אם קיים userId, הצג את רכיב Achievement */}
             {userId ? (
-                <Achievement userId={userId} />
+                <Achievements userId={userId} />
             ) : (
                 <p>לא נבחר משתמש להצגת הישגים.</p>
             )}

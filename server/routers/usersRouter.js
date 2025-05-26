@@ -9,7 +9,7 @@ router.post("/", verifyJWT_Manager,userControler.creatUser)
 router.get("/:status",verifyJWT_Staff,userControler.getByType)
 router.get("/getbyid/:_id",verifyJWT_Staff ,userControler.getUserById)
 router.put("/", verifyJWT_Manager,userControler.updateUser)
-router.delete("/:_id",verifyJWT_Manager ,userControler.deleteUser)
+router.delete("/:id",verifyJWT_Manager ,userControler.deleteUser)
 
 module.exports = router
 

@@ -1,11 +1,13 @@
 const Users = require("../models/Users")
 
 const getByType = ('/', async (req, res) => {
-     const {type}=req.params
-        const usersByType = await Users.find({ status: type });
+     const {status}=req.params
+     console.log(status)
+        const usersByType = await Users.find({ status: status });
+        console.log(usersByType)
         res.json(usersByType);
     
-        res.status(500).json({ message: 'An error occurred while retrieving staff data' });
+        // res.status(500).json({ message: 'An error occurred while retrieving staff data' });
     
 })
 
@@ -13,8 +15,9 @@ const getUserById = ('/', async (req, res) => {
     const { id } = req.params  
     const user = await Users.findById(id).lean()
     if (!user) {
-        return res.status(404).json({ message: 'No user found' })
+        return res.status(404).json({ message: 'No user found' }) 
     }
+    console.log(user)
     res.json(user)
 })
 
